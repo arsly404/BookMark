@@ -1,0 +1,51 @@
+<html>
+<head>
+  <title>書籤下載</title>
+</head>
+<script>  
+  function download(filename, text) {
+    var pom = document.createElement('a');
+    pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    pom.setAttribute('download', filename);
+
+    if (document.createEvent) {
+        var event = document.createEvent('MouseEvents');
+        event.initEvent('click', true, true);
+        pom.dispatchEvent(event);
+    }
+    else {
+        pom.click();
+    }
+}
+</script>
+<script type="text/javascript">
+  function Storage(){
+    
+    var nameElement = document.getElementById('title');
+    var name = nameElement.value;   //title指定元素給name
+    var HTTPElement = document.getElementById('url');
+    var link = HTTPElement.value;   //url指定元素給kink
+
+    download(name+'.url', '[InternetShortcut]\nIDList=\nURL='+link);
+
+
+    // [InternetShortcut]
+    // IDList=
+    // URL=https://www.google.com.tw/?gws_rd=ssl
+
+  }
+</script>
+<body style="background-color:	#C0C0C0;">
+  <form name='form' id='form'>
+    輸入網頁標題：
+    <br>
+    <input type='text' name='title' id='title' /> 
+    <br>
+    輸入網頁網址：
+    <br>
+    <input type='text' name='url'  id='url'/>
+    <br>
+    <input type="button" name="btn" id="b1" value="送出" onclick="Storage();"/>
+  </form>
+</body>
+</html>
